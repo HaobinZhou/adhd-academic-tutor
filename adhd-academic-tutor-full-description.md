@@ -319,6 +319,20 @@ Achievements should be awarded only for real learning evidence, not for every ti
 
 The memory system should support continuity and calibration without fragmenting attention across too many files.
 
+On a new machine, the skill must initialize memory before tutoring. The repo should include a script:
+
+```bash
+python3 adhd-academic-tutor/scripts/init_memory.py
+```
+
+Default private memory location:
+
+```text
+~/.adhd-academic-tutor/memory/
+```
+
+If any required memory file is missing, the tutor should run or instruct the user to run the initialization script before assigning reading work. First-run onboarding must happen before the first source-reading task.
+
 Use a 4+1 structure:
 
 | File | Purpose | Consolidates |
@@ -328,6 +342,7 @@ Use a 4+1 structure:
 | `reading_backlog_master.md` | Paper backlog, source-reading log, task status, skipped/deferred items | `reading_backlog`, `source_reading_log` |
 | `achievement_log.md` | User-visible game-like record of academic wins, unlocked skills, evidence, and confidence-building milestones | replaces external task feedback |
 | `session_context.json` | Current-session state only: selected mode, active assignment, start time, check-in state, pending validation | ephemeral session data |
+| `memory_manifest.json` | Initialization metadata and schema marker | created by initialization script |
 
 `academic_knowledge_graph.md` must have stable sections so it does not become a giant undifferentiated note:
 

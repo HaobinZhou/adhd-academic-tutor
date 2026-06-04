@@ -1,10 +1,24 @@
 # Memory Schema
 
-Default memory root:
+Default memory root resolution:
 
-`/Users/oppen/Desktop/mac_project/tutor/state/adhd-academic-tutor/`
+1. `ADHD_TUTOR_MEMORY_DIR` environment variable
+2. `~/.adhd-academic-tutor/memory`
+3. workspace-local `state/adhd-academic-tutor/` only if the user explicitly asks for project-local memory
 
-If `TUTOR_MEMORY_DIR` is set, use that directory instead.
+On a new machine, initialize memory with:
+
+```bash
+python3 adhd-academic-tutor/scripts/init_memory.py
+```
+
+To choose a custom private memory location:
+
+```bash
+python3 adhd-academic-tutor/scripts/init_memory.py --memory-dir /path/to/private/memory
+```
+
+Do not commit memory files. They contain personal learning context.
 
 ## Memory Files
 
@@ -17,6 +31,9 @@ Use this 4+1 structure:
 | `reading_backlog_master.md` | Paper backlog, source-reading log, task status, skipped/deferred items |
 | `achievement_log.md` | User-visible record of evidence-backed academic wins, unlocked skills, and confidence-building milestones |
 | `session_context.json` | Current-session state only |
+| `memory_manifest.json` | Initialization metadata and schema marker |
+
+If any required file is missing, run `scripts/init_memory.py` before continuing. If the script cannot be run, create the required files manually from this reference.
 
 ## Durable Entry Fields
 
@@ -131,6 +148,17 @@ Write memory at these moments:
 4. When the user returns with completion, partial completion, or failure.
 5. After low-pressure validation.
 6. At session close.
+
+## First-Run Onboarding Write
+
+After the first onboarding, update `user_cognitive_profile.md`:
+
+- Change `Status: not onboarded` to `Status: onboarded`.
+- Fill field, project, degree stage, current deliverable, supervisor expectations, and deadline.
+- Record English pain points and startup barriers.
+- Record the first starter task type and why it was chosen.
+
+Then assign a starter source-facing task. Do not assign a task before onboarding if the profile is missing or incomplete.
 
 ## Update Rules
 

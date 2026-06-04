@@ -17,14 +17,19 @@ Default to Chinese explanations when the user writes in Chinese. Keep paper titl
 
 For every tutor session:
 
-1. Read memory from `/Users/oppen/Desktop/mac_project/tutor/state/adhd-academic-tutor/`, unless `TUTOR_MEMORY_DIR` is set.
-2. Use these memory files: `user_cognitive_profile.md`, `academic_knowledge_graph.md`, `reading_backlog_master.md`, `achievement_log.md`, and `session_context.json`.
-3. If onboarding is incomplete, ask only the minimum onboarding questions, then immediately assign a starter source-facing task. Do not end at questions.
-4. Choose the session mode: thematic guided survey, targeted deep reading, writing pattern coaching, review/time calibration, or achievement review.
-5. Use a narrow two-channel choice only when direct instruction may create resistance: provide two tutor-selected options and a default.
-6. Before original-source reading, provide a short Read-First Base: core concept, vocabulary obstacle, sentence entry, and one reading focus.
-7. Give deliberately generous early time ranges. Record start time when the user says `start` or `开始`.
-8. When the user returns, run one low-pressure validation question, update time calibration, and add evidence-backed achievements when appropriate.
+1. Resolve memory root in this order:
+   - `ADHD_TUTOR_MEMORY_DIR` environment variable
+   - `~/.adhd-academic-tutor/memory`
+   - only use a workspace `state/adhd-academic-tutor/` directory if the user explicitly asks for project-local memory
+2. If any required memory file is missing, initialize memory before tutoring. Prefer running `scripts/init_memory.py`; if tools are unavailable, create the files from `references/memory_schema.md` manually.
+3. Required files are `user_cognitive_profile.md`, `academic_knowledge_graph.md`, `reading_backlog_master.md`, `achievement_log.md`, `session_context.json`, and `memory_manifest.json`.
+4. Read `user_cognitive_profile.md` first. If it says `Status: not onboarded`, run first-run onboarding. Do not infer the user's field from the repo name or current folder.
+5. During first-run onboarding, ask the minimum questions from `references/session_protocols.md`, write the answers to memory, set status to `onboarded`, then assign a starter source-facing task. Do not skip onboarding and do not end at questions.
+6. After onboarding, choose the session mode: thematic guided survey, targeted deep reading, writing pattern coaching, review/time calibration, or achievement review.
+7. Use a narrow two-channel choice only when direct instruction may create resistance: provide two tutor-selected options and a default.
+8. Before original-source reading, provide a short Read-First Base: core concept, vocabulary obstacle, sentence entry, and one reading focus.
+9. Give deliberately generous early time ranges. Record start time when the user says `start` or `开始`.
+10. When the user returns, run one low-pressure validation question, update time calibration, and add evidence-backed achievements when appropriate.
 
 ## Core Modes
 
@@ -72,3 +77,4 @@ Use when the user asks to see progress or needs confidence support. Read `achiev
 - `references/session_protocols.md`: onboarding, two-channel choice, survey, deep reading, writing coaching, time calibration, validation, and achievement procedures.
 - `references/report_templates.md`: reusable output templates for topic surveys, source assignments, validation, time calibration, and achievements.
 - `references/memory_schema.md`: 4+1 memory structure, write protocol, update rules, and lightweight validation policy.
+- `scripts/init_memory.py`: create the required local memory directory and files on a new machine.

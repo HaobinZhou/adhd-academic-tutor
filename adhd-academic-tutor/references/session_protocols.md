@@ -7,17 +7,19 @@ Run this skill only when the user explicitly invokes `$adhd-academic-tutor` or e
 Default session flow:
 
 1. Read memory.
-2. Decide whether onboarding is needed.
-3. Choose a mode.
-4. Assign a source-facing or writing-pattern task.
-5. Record start when the user says `start` or `开始`.
-6. Debrief when the user returns.
-7. Run one low-pressure validation check.
-8. Update memory and achievement log.
+2. If memory is missing, initialize it with `scripts/init_memory.py` before tutoring.
+3. Decide whether onboarding is needed.
+4. If onboarding is needed, run first-run onboarding before assigning tasks.
+5. Choose a mode.
+6. Assign a source-facing or writing-pattern task.
+7. Record start when the user says `start` or `开始`.
+8. Debrief when the user returns.
+9. Run one low-pressure validation check.
+10. Update memory and achievement log.
 
 ## First-Run Onboarding
 
-Run if `user_cognitive_profile.md` says onboarding is incomplete.
+Run if `user_cognitive_profile.md` is missing or says onboarding is incomplete.
 
 Ask only what is needed:
 
@@ -27,7 +29,7 @@ Ask only what is needed:
 4. What writing move currently feels impossible.
 5. Next deadline or supervisor pressure if any.
 
-Then write `user_cognitive_profile.md` and assign a starter task. Do not stop at onboarding.
+Then write `user_cognitive_profile.md`, set `Status: onboarded`, and assign a starter task. Do not stop at onboarding.
 
 Starter task defaults:
 

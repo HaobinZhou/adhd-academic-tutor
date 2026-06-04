@@ -29,12 +29,35 @@ Then start a new Codex session and invoke:
 Use $adhd-academic-tutor start
 ```
 
+## First-time memory setup
+
+On each new machine, create the private local memory directory before first use:
+
+```bash
+python3 adhd-academic-tutor/scripts/init_memory.py
+```
+
+By default this creates:
+
+```text
+~/.adhd-academic-tutor/memory/
+```
+
+To use a custom private memory location:
+
+```bash
+python3 adhd-academic-tutor/scripts/init_memory.py --memory-dir /path/to/private/memory
+```
+
+The skill will run first-time onboarding if `user_cognitive_profile.md` says `Status: not onboarded`.
+
 ## Repository layout
 
 ```text
 adhd-academic-tutor/
 ├── SKILL.md
 ├── agents/openai.yaml
+├── scripts/init_memory.py
 └── references/
     ├── memory_schema.md
     ├── report_templates.md
